@@ -137,7 +137,8 @@
                         </div>
                     </div>
                     <div class="form-row center-contents last-row">
-                        <button id="place-order" class="btn btn-info" type="">Place order</button>
+                        <button id="place-order" class="btn btn-info" type="" disabled>Enable camera to place order
+                            !</button>
                     </div>
                     <!-- </form> -->
                 </div>
@@ -192,6 +193,8 @@
                 return;
             }
 
+            document.getElementById("place-order").disabled = false;
+            document.getElementById("place-order").innerText = "Place Order";
             video.srcObject = stream;
             video.style.display = 'none';
         });
@@ -203,6 +206,21 @@
             alert(image_data_url);
             console.log(image_data_url);
         });
+
+        async function isCameraEnabled() {
+            try {
+                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                    await navigator.mediaDevices.getUserMedia({
+                        video: true
+                    });
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (error) {
+                return false; // Permission denied or error occurred
+            }
+        }
     </script>
 
 
