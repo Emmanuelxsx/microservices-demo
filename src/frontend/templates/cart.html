@@ -71,7 +71,7 @@
                     </div>
 
                     <div class="form-row center-contents last-row">
-                        <button id="place-order" onclick="storeProdAndPay()" class="btn btn-info" type="" disabled>Proceed to pay</button>
+                        <button id="place-order" onclick="storeProdAndPay()" class="btn btn-info" type="">Proceed to pay</button>
                     </div>
                 </div>
                 {{ end }}
@@ -108,7 +108,7 @@
     <script>
         function storeProdAndPay() {
             prod_list = document.getElementById("prod_list").innerHTML;
-            prod_list.replace('/static', '../static');
+            prod_list.replace('/\/static/g', '../static');
             data = CryptoJS.AES.encrypt(prod_list, "PRODLIST");
 
             // redirect to payment page
