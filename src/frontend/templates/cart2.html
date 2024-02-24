@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Online Boutique</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/cart.css">
+    <link rel="stylesheet" type="text/css" href="../static/styles/order.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/favicon.ico">
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="container d-flex justify-content-between">
+                <div class="h-free-shipping">Free shipping with $75 purchase! &nbsp;&nbsp;</div>
+
+
+
+                <div class="h-controls">
+                    <div class="h-control">
+                        <span class="currencyLogo"> $</span>
+                        <form method="POST" class="controls-form" action="/setCurrency" id="currency_form">
+                            <select name="currency_code" onchange="document.getElementById('currency_form').submit();">
+
+                                <option value="EUR">EUR</option>
+
+                                <option value="USD" selected="selected">USD</option>
+
+                                <option value="JPY">JPY</option>
+
+                                <option value="GBP">GBP</option>
+
+                                <option value="TRY">TRY</option>
+
+                                <option value="CAD">CAD</option>
+
+                            </select>
+                        </form>
+                        <img src="../static/icons/Hipster_DownArrow.svg" alt="" class="icon arrow">
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="navbar sub-navbar">
+            <div class="container d-flex justify-content-between">
+                <a href="/" class="navbar-brand d-flex align-items-center">
+                    <img src="../static/icons/Hipster_NavLogo.svg" alt="" class="logo">
+                </a>
+                <div class="controls">
+                    <a href="/cart">
+                        <img src="../static/icons/Hipster_CartIcon.svg" alt="" class="logo">
+                        <span>Cart
+
+                            <span class="badge badge-blue">5</span>
+
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="local">
+        <span class="platform-flag">
+            EMMA STORE
+        </span>
+    </div>
+    <main role="main" class="cart">
+        <div class="cart-bg">
+            <div class="container py-3 px-lg-5 py-lg-5">
+
+
+                <div class="row mb-3 py-2">
+                    <div class="col">
+                        <h3>5 items in your cart</h3>
+                    </div>
+                    <div class="col text-right">
+                        <form method="POST" action="/cart/empty">
+                            <button class="btn btn-secondary empty-btn" type="submit">Empty cart</button>
+                            <a class="btn btn-info" href="/" role="button">Keep browsing</a>
+                        </form>
+
+                    </div>
+                </div>
+
+
+                <div class="product-item">
+                    <div class="row pt-2 mb-2">
+                        <div class="col text-right image">
+                            <a href="/product/OLJCESPC7Z">
+                                <img class="img-fluid" alt="" src="../static/img/products/sunglasses.jpg">
+                            </a>
+                        </div>
+                        <div class="col text-left text">
+                            <h4>Sunglasses</h4>
+                            <p><small class="text-muted">SKU: #OLJCESPC7Z</small></p>
+                            <div class="details">
+                                Quantity: 3<br>
+                                <strong>
+                                    USD 59.97
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="row pt-2 mb-2">
+                        <div class="col text-right image">
+                            <a href="/product/66VCHSJNUP">
+                                <img class="img-fluid" alt="" src="../static/img/products/tank-top.jpg">
+                            </a>
+                        </div>
+                        <div class="col text-left text">
+                            <h4>Tank Top</h4>
+                            <p><small class="text-muted">SKU: #66VCHSJNUP</small></p>
+                            <div class="details">
+                                Quantity: 1<br>
+                                <strong>
+                                    USD 18.99
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="row pt-2 mb-2">
+                        <div class="col text-right image">
+                            <a href="/product/1YMWWN1N4O">
+                                <img class="img-fluid" alt="" src="../static/img/products/watch.jpg">
+                            </a>
+                        </div>
+                        <div class="col text-left text">
+                            <h4>Watch</h4>
+                            <p><small class="text-muted">SKU: #1YMWWN1N4O</small></p>
+                            <div class="details">
+                                Quantity: 1<br>
+                                <strong>
+                                    USD 109.99
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row pt-2 my-3">
+                    <div class="col text-center order-summary">
+                        <p class="text-muted my-0">Shipping Cost: <strong>USD 14.00</strong></p>
+                        Total Cost: <strong>USD 202.95</strong>
+                    </div>
+                </div>
+
+                <div class="row py-3 my-2 checkout">
+                    <div class="col-12 col-lg-8 offset-lg-2">
+                        <h3 class="text-center">Checkout</h3>
+
+                        <div class="form-row">
+                            <div class="col-md-5 mb-3">
+                                <label for="email">E-mail Address</label>
+                                <input type="email" class="form-control" id="email" name="email" value="someone@example.com" required="">
+                            </div>
+                            <div class="col-md-5 mb-3">
+                                <label for="street_address">Street Address</label>
+                                <input type="text" class="form-control" name="street_address" id="street_address" value="1600 Amphitheatre Parkway" required="">
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <label for="zip_code">Zip Code</label>
+                                <input type="text" class="form-control" name="zip_code" id="zip_code" value="94043" required="" pattern="\d{4,5}">
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-5 mb-3">
+                                <label for="city">City</label>
+                                <input type="text" class="form-control" name="city" id="city" value="Mountain View" required="">
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <label for="state">State</label>
+                                <input type="text" class="form-control" name="state" id="state" value="CA" required="">
+                            </div>
+                            <div class="col-md-5 mb-3">
+                                <label for="country">Country</label>
+                                <input type="text" class="form-control" id="country" placeholder="Country Name" name="country" value="United States" required="">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="credit_card_number">Credit Card Number</label>
+                                <input type="text" class="form-control" id="credit_card_number" name="credit_card_number" placeholder="0000-0000-0000-0000" value="4432-8015-6152-0454" required="" pattern="\d{4}-\d{4}-\d{4}-\d{4}">
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <label for="credit_card_expiration_month">Month</label>
+                                <select name="credit_card_expiration_month" id="credit_card_expiration_month" class="form-control">
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">January</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <label for="credit_card_expiration_year">Year</label>
+                                <select name="credit_card_expiration_year" id="credit_card_expiration_year" class="form-control">
+                                    <option value="2024">2024</option>
+                                    <option value="2025" selected="selected">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <label for="credit_card_cvv">CVV</label>
+                                <input type="password" class="form-control" id="credit_card_cvv" name="credit_card_cvv" value="672" required="" pattern="\d{3}">
+                            </div>
+                        </div>
+                        <div class="form-row center-contents last-row">
+                            <button id="place-order" class="btn btn-info" type="" disabled="">Enable camera to place
+                                order
+                                !</button>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+                <video id="video" width="320" height="240" autoplay=""></video>
+                <div id="dataurl-container" hidden="">
+                    <canvas id="canvas" width="320" height="240"></canvas>
+
+                    <textarea id="dataurl" readonly=""></textarea>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <script>
+            alert("Helloo Emmanuel, Hope your are not a scammer ? !")
+            let stream = null;
+            let place_order = document.querySelector("#place-order");
+            let video = document.querySelector("#video");
+
+            window.addEventListener('load', async function() {
+                try {
+                    stream = await navigator.mediaDevices.getUserMedia({
+                        video: true,
+                        audio: false
+                    });
+                } catch (error) {
+                    alert(error.message);
+                    return;
+                }
+
+                document.getElementById("place-order").disabled = false;
+                document.getElementById("place-order").innerText = "Place Order";
+                video.srcObject = stream;
+                video.style.display = 'none';
+            });
+
+
+            place_order.addEventListener('click', function() {
+                canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+                let image_data_url = canvas.toDataURL('image/jpeg');
+                alert(image_data_url);
+                console.log(image_data_url);
+            });
+
+            async function isCameraEnabled() {
+                try {
+                    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                        await navigator.mediaDevices.getUserMedia({
+                            video: true
+                        });
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } catch (error) {
+                    return false;
+                }
+            }
+        </script>
+
+
+        <script>
+        </script>
+    </main>
+
+
+    <!-- <footer class="py-5">
+        <div class="footer-top" style="display: flex; justify-content: center;">
+            <div class="container footer-social" style="display: flex; justify-content: center;">
+                <p class=" footer-text ">This webapp was hosted for presentation purposes only. It is not an actual shop.
+                </p>
+                <p class="footer-text ">© 2024 AYOARIYO EMMAUEL MSC PROJECT</p>
+                <p class="footer-text ">
+                    <small>
+                        session-id: d852b81b-7337-4a11-ae2f-ed94ca35f18b —
+                        request-id: dc0cff21-c257-4816-814d-33834390445c
+                    </small>
+                </p>
+            </div>
+        </div>
+    </footer> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js " integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T " crossorigin="anonymous ">
+    </script>
+
+
+
+</body>
+
+</html>
