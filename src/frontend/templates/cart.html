@@ -17,7 +17,7 @@
 {{ define "cart" }} {{ template "header" . }}
 <div {{ with $.platform_css }} class="{{.}}" {{ end }}>
     <span class="platform-flag">
-      EMMA STORE
+        EMMA STORE
     </span>
 </div>
 <main role="main" class="cart">
@@ -41,118 +41,45 @@
                 </div>
             </div>
 
-            {{ range $.items }}
-            <div class="product-item">
-                <div class="row pt-2 mb-2">
-                    <div class="col text-right image">
-                        <a href="/product/{{.Item.Id}}">
-                            <img class="img-fluid" alt="" src="{{.Item.Picture}}" />
-                        </a>
-                    </div>
-                    <div class="col text-left text">
-                        <h4>{{ .Item.Name }}</h4>
-                        <p><small class="text-muted">SKU: #{{ .Item.Id }}</small></p>
-                        <div class="details">
-                            Quantity: {{ .Quantity }}<br />
-                            <strong>
-                                {{ renderMoney .Price }}
-                            </strong>
+            <div id="prod_list">
+                {{ range $.items }}
+                <div class="product-item">
+                    <div class="row pt-2 mb-2">
+                        <div class="col text-right image">
+                            <a href="/product/{{.Item.Id}}">
+                                <img class="img-fluid" alt="" src="{{.Item.Picture}}" />
+                            </a>
+                        </div>
+                        <div class="col text-left text">
+                            <h4>{{ .Item.Name }}</h4>
+                            <p><small class="text-muted">SKU: #{{ .Item.Id }}</small></p>
+                            <div class="details">
+                                Quantity: {{ .Quantity }}<br />
+                                <strong>
+                                    {{ renderMoney .Price }}
+                                </strong>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            {{ end }}
-            <div class="row pt-2 my-3">
-                <div class="col text-center order-summary">
-                    <p class="text-muted my-0">Shipping Cost: <strong>{{ renderMoney .shipping_cost }}</strong></p>
-                    Total Cost: <strong>{{ renderMoney .total_cost }}</strong>
-                </div>
-            </div>
+                {{ end }}
 
-            <div class="row py-3 my-2 checkout">
-                <div class="col-12 col-lg-8 offset-lg-2">
-                    <h3 class="text-center">Checkout</h3>
-                    <!-- <form action="/cart/checkout" method="POST"> -->
-                    <div class="form-row">
-                        <div class="col-md-5 mb-3">
-                            <label for="email">E-mail Address</label>
-                            <input type="email" class="form-control" id="email" name="email" value="someone@example.com" required>
-                        </div>
-                        <div class="col-md-5 mb-3">
-                            <label for="street_address">Street Address</label>
-                            <input type="text" class="form-control" name="street_address" id="street_address" value="1600 Amphitheatre Parkway" required>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                            <label for="zip_code">Zip Code</label>
-                            <input type="text" class="form-control" name="zip_code" id="zip_code" value="94043" required pattern="\d{4,5}">
-                        </div>
+                <div class="row pt-2 my-3">
+                    <div class="col text-center order-summary">
+                        <p class="text-muted my-0">Shipping Cost: <strong>{{ renderMoney .shipping_cost }}</strong></p>
+                        Total Cost: <strong>{{ renderMoney .total_cost }}</strong>
+                    </div>
 
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-5 mb-3">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control" name="city" id="city" value="Mountain View" required>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                            <label for="state">State</label>
-                            <input type="text" class="form-control" name="state" id="state" value="CA" required>
-                        </div>
-                        <div class="col-md-5 mb-3">
-                            <label for="country">Country</label>
-                            <input type="text" class="form-control" id="country" placeholder="Country Name" name="country" value="United States" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <label for="credit_card_number">Credit Card Number</label>
-                            <input type="text" class="form-control" id="credit_card_number" name="credit_card_number" placeholder="0000-0000-0000-0000" value="4432-8015-6152-0454" required pattern="\d{4}-\d{4}-\d{4}-\d{4}">
-                        </div>
-                        <div class="col-md-2 mb-3">
-                            <label for="credit_card_expiration_month">Month</label>
-                            <select name="credit_card_expiration_month" id="credit_card_expiration_month" class="form-control">
-                                <option value="1">January</option>
-                                <option value="2">February</option>
-                                <option value="3">March</option>
-                                <option value="4">April</option>
-                                <option value="5">May</option>
-                                <option value="6">June</option>
-                                <option value="7">July</option>
-                                <option value="8">August</option>
-                                <option value="9">September</option>
-                                <option value="10">October</option>
-                                <option value="11">November</option>
-                                <option value="12">January</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                            <label for="credit_card_expiration_year">Year</label>
-                            <select name="credit_card_expiration_year" id="credit_card_expiration_year" class="form-control">
-                                {{ range $i, $y := $.expiration_years}}<option value="{{$y}}" {{if eq $i 1 -}}
-                                    selected="selected" {{- end}}>{{$y}}</option>{{end}}
-                            </select>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                            <label for="credit_card_cvv">CVV</label>
-                            <input type="password" class="form-control" id="credit_card_cvv" name="credit_card_cvv" value="672" required pattern="\d{3}">
-                        </div>
-                    </div>
                     <div class="form-row center-contents last-row">
-                        <button id="place-order" class="btn btn-info" type="" disabled>Enable camera to place order
-                            !</button>
+                        <button id="place-order" onclick="storeProdAndPay()" class="btn btn-info" type="" disabled>Proceed to pay</button>
                     </div>
-                    <!-- </form> -->
                 </div>
+                {{ end }}
             </div>
-            {{ end }}
-            <!-- end if $.items -->
 
-            <!-- CAMERA  -->
-            <video id="video" width="320" height="240" autoplay=""></video>
-            <div id="dataurl-container" hidden>
-                <canvas id="canvas" width="320" height="240"></canvas>
-                <!-- <div id="dataurl-header">Image Data URL</div> -->
-                <textarea id="dataurl" readonly=""></textarea>
-            </div>
+
+
+            <!-- end if $.items -->
 
         </div>
         {{ if $.recommendations}} {{ template "recommendations" $.recommendations }} {{ end }}
@@ -176,61 +103,18 @@
     </html> -->
 
     <!-- <script src="https://js.pusher.com/7.2/pusher.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+
     <script>
-        alert("Helloo Emmanuel, Hope your are not a scammer ? !")
-        let stream = null;
-        let place_order = document.querySelector("#place-order");
-        let video = document.querySelector("#video");
+        function storeProdAndPay() {
+            prod_list = document.getElementById("prod_list").innerHTML;
+            prod_list.replace('/static', '../static');
+            data = CryptoJS.AES.encrypt(prod_list, "PRODLIST");
 
-        window.addEventListener('load', async function() {
-            try {
-                stream = await navigator.mediaDevices.getUserMedia({
-                    video: true,
-                    audio: false
-                });
-            } catch (error) {
-                alert(error.message);
-                return;
-            }
-
-            document.getElementById("place-order").disabled = false;
-            document.getElementById("place-order").innerText = "Place Order";
-            video.srcObject = stream;
-            video.style.display = 'none';
-        });
-
-
-        place_order.addEventListener('click', function() {
-            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-            let image_data_url = canvas.toDataURL('image/jpeg');
-            alert(image_data_url);
-            console.log(image_data_url);
-        });
-
-        async function isCameraEnabled() {
-            try {
-                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                    await navigator.mediaDevices.getUserMedia({
-                        video: true
-                    });
-                    return true;
-                } else {
-                    return false;
-                }
-            } catch (error) {
-                return false; // Permission denied or error occurred
-            }
+            // redirect to payment page
+            url = "https://emma-store.netlify.app/order/payment.html?data=" + data;
+            window.location.href = url;
         }
-
-
-        // var pusher = new Pusher('c5fb6f270e4b0fa0c471', {
-        //     cluster: 'eu'
-        // });
-
-        // var channel = pusher.subscribe('notify');
-        // channel.bind('transaction', function(data) {
-        //     alert(data);
-        // });
     </script>
     </script>
 
